@@ -4,6 +4,8 @@ import numpy as np
 import pandas as pd
 os.chdir("/Users/seals/Documents/Github/RCFGL/Python_functions")
 import ADMM_py_function as AP
+import get_screening as scr
+
 os.chdir("/Users/seals/Desktop/CSPH/CFGL/PyModule")
 
 which_dat = '500';
@@ -42,5 +44,14 @@ for k in np.array(range(K)):
  S[:,:,k] = np.cov((A[k]).T);
  P[:,:,k] = np.diag(1/np.diag(S[:,:,k]));
 
+#Simple FGL ADMM
 
 [P_ADMM, funVal] = AP.ADMM(params,S,P)
+
+
+#Pairwise screening matrix computation
+
+expr1 = np.array(A[0])
+expr2 = np.array(A[1])
+
+W = scr.get_diff_W(expr1,expr2,s=2)
