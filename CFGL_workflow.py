@@ -3,7 +3,8 @@ import os
 import numpy as np
 import pandas as pd
 os.chdir("/Users/seals/Documents/Github/RCFGL/Python_functions")
-import ADMM_py_function as AP
+import ADMM_py_function_new as AP
+os.chdir("/Users/seals/Documents/Github/RCFGL/Python_functions")
 import get_screening as scr
 
 os.chdir("/Users/seals/Desktop/CSPH/CFGL/PyModule")
@@ -19,14 +20,15 @@ LHB = pd.read_csv('/Users/seals/Desktop/CSPH/CFGL/MATLAB_data/'+which_dat+'_LHB_
 LHB = LHB.iloc[:,1:LHB.shape[1]]
 
 p = Acbc.shape[1];
-lambda1 = 0.05
-lambda2 = 0.005;
+lambda1 = 0.01
+lambda2 = 0.05;
 rho = 1;
 ADMMmaxiter = 250;
-pen_diag = "True"
-admmtol = 0.00001
+#pen_diag = "True";
+admmtol = 1e-4;
+difftol = 1e-4;
 params = []
-params.extend((lambda1, lambda2, rho, p, ADMMmaxiter, pen_diag, admmtol))
+params.extend((lambda1, lambda2, rho, p, ADMMmaxiter, admmtol, difftol))
 
 A = []
 A.append(Acbc);
@@ -37,16 +39,17 @@ K = len(A);
 
 S = np.zeros((p,p,K));
 P = np.zeros((p,p,K));
-
+n = np.zeros(K);
 trueSparsity  = 0;
 
 for k in np.array(range(K)):
- S[:,:,k] = np.cov((A[k]).T);
+ n[k] = A[k].shape[0];   
+ S[:,:,k] = np.dot(np.cov((A[k]).T),(n[k]-1)/n[k]);
  P[:,:,k] = np.diag(1/np.diag(S[:,:,k]));
 
 #Simple FGL ADMM
 
-[P_ADMM, funVal] = AP.ADMM(params,S,P)
+[P_ADMM, funVal] = AP.ADMM(params, S, P, diff_tol = False)
 
 
 #Pairwise screening matrix computation

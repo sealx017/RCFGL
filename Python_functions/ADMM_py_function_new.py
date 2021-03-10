@@ -20,9 +20,8 @@ def ADMM(params,S,P,diff_tol):
     rho = params[2];
     p = int(params[3]);
     maxiter = params[4]
-    #pen_diag = params[5];
-    admmtol = params[6];
-    difftol = params[7];
+    admmtol = params[5];
+    difftol = params[6];
     K = S.shape[2]
     U = np.zeros((p,p,K));
     Z = np.zeros((p,p,K));
@@ -51,11 +50,6 @@ def ADMM(params,S,P,diff_tol):
      U = U + (P - Z);
        
      funVal[0,iter] = computLogDet( P, S, K, lambda1, lambda2);
-     #funVal[1,iter] =  np.sum(abs(P-Z));  
-     #funVal[1,iter] =  np.sum(abs(P-P_prev));      
-     #if (funVal[0,iter]) == np.float64('-inf') or abs(funVal[1,iter] - funVal[1,iter-1]) < admmtol:
-      #break;
-     #if abs(funVal[1,iter] - funVal[1,iter-1]) < admmtol:
      diff_value = 0
      for k in range(K):
        diff_value += np.sum(abs(P[:,:,k] - P_prev[:,:,k]))/np.sum(abs(P_prev[:,:,k]))
