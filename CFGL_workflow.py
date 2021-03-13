@@ -57,4 +57,4 @@ for k in np.array(range(K)):
 expr1 = np.array(A[0])
 expr2 = np.array(A[1])
 
-W = scr.get_diff_W(expr1,expr2,s=2)
+W = scr.get_scr_mat(expr1,expr2)
