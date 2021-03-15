@@ -4,6 +4,10 @@ import numpy as np
 import pandas as pd
 os.chdir("/Users/seals/Documents/Github/RCFGL/Python_functions")
 import ADMM_py_function_new as AP
+
+os.chdir("/Users/seals/Documents/Github/RCFGL/Python_functions")
+import CFGL_ADMM as CFGL_AP
+
 os.chdir("/Users/seals/Documents/Github/RCFGL/Python_functions")
 import get_screening as scr
 
@@ -47,14 +51,32 @@ for k in np.array(range(K)):
  S[:,:,k] = np.dot(np.cov((A[k]).T),(n[k]-1)/n[k]);
  P[:,:,k] = np.diag(1/np.diag(S[:,:,k]));
 
+
+
+
 #Simple FGL ADMM
 
-[P_ADMM, funVal] = AP.ADMM(params, S, P, diff_tol = False)
+[P_ADMM, funVal] = AP.FGL_ADMM(params, S, P, diff_tol = False)
 
+
+#CFGL ADMM
 
 #Pairwise screening matrix computation
 
-expr1 = np.array(A[0])
-expr2 = np.array(A[1])
+Weight = np.zeros((2,p,p))
 
-W = scr.get_scr_mat(expr1,expr2)
+for k in range(K-1):
+    Weight[k] = scr.get_scr_mat(np.array(A[k]),np.array(A[k+1]))
+
+Sum_Weight = np.sum(Weight,axis = 0)
+lower_indices = np.tril_indices(p,k = -1)
+Sum_Weight[lower_indices] = -1
+which_K = np.where(Sum_Weight==K-1)
+which_not_K = np.where((Sum_Weight!=K-1) & (Sum_Weight!=-1))
+
+#Fitting CFGL with the computed screening matrices
+
+[P_CFGL_ADMM, funVal] = CFGL_AP.CFGL_ADMM(params, S, P, Weight, which_K, which_not_K, diff_tol = False)
+
+
+

@@ -1,14 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Mar 14 20:39:08 2021
 
-import cppyy
-import os
-os.chdir("/Users/seals/Documents/Github/RCFGL/C_functions")
-cppyy.include('fmgl_n.h')
-from cppyy.gbl import fmgl_subfusedLasso_n
-import numpy as np
-import os
-from scipy.linalg import blas
+@author: seals
+"""
 
-def FGL_ADMM(params,S,P,diff_tol):
 
     lambda1 = params[0];
     lambda2 = params[1];
@@ -31,8 +28,8 @@ def FGL_ADMM(params,S,P,diff_tol):
          
     iter = 0;      
     funVal = np.zeros([3, int(maxiter)])
-    for iter in range(maxiter):
-     #print(iter);
+    for iter in range(240):
+     print(iter);
      P_prev = np.copy(P);
      W = -S + np.multiply(rho,(Z - U));
      for k in range(K):
@@ -40,9 +37,8 @@ def FGL_ADMM(params,S,P,diff_tol):
       D = np.diag((wd + np.sqrt(wd**2 + np.dot(4,rho)))/np.dot(2,rho));
       P[:,:,k] = blas.sgemm(1,blas.sgemm(1,V,D),V,trans_b = 1);
        
-     W = P + U;    
-     fmgl_subfusedLasso_n(Z,W,fx,fy,lambda1/rho, lambda2/rho, p, K, int(np.dot((p+1),p/2)));   
-     print(W[6,106,:]);
+     W = P + U;      
+     fmgl_subfusedLasso_n(Z,W,fx,fy,lambda1/rho, lambda2/rho, p, K, int(np.dot((p+1),p/2)));    
      U = U + (P - Z);
        
      funVal[0,iter] = computLogDet( P, S, K, lambda1, lambda2);
@@ -52,28 +48,3 @@ def FGL_ADMM(params,S,P,diff_tol):
      
      funVal[1,iter] = diff_value
      funVal[2,iter] =  np.sum(abs(P-Z))
-     if diff_tol == True:
-      if abs(funVal[1,iter] - funVal[1,iter-1]) < difftol:
-       break;  
-     else:
-      if abs(funVal[1,iter]) < admmtol:
-       break;
-     
-    funVal = funVal[:,range(iter)]
-    result = [];
-    result.append(P)
-    result.append(funVal)
-    return(result)
-    
-
-def computLogDet(P, S, K, lam1, lam2):
-
-    td = 0;
-    for i in range(K):
-       td -= np.log(np.linalg.det(P[:,:,i])) + np.sum(np.multiply(S[:,:,i],P[:,:,i]));
-       
-    td = td + np.dot(lam1,np.sum(abs(P)));
-    P = P[:,:,range(K-2)] - P[:,:,range(1,K-1)];
-    td = td + np.dot(lam2,np.sum(abs(P)));
-    return td;
-   

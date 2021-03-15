@@ -1,14 +1,14 @@
-
 import cppyy
 import os
 os.chdir("/Users/seals/Documents/Github/RCFGL/C_functions")
-cppyy.include('fmgl_n.h')
-from cppyy.gbl import fmgl_subfusedLasso_n
+cppyy.include('fmgl_n_copy.h')
+from cppyy.gbl import fmgl_subfusedLasso_nc
+os.chdir("/Users/seals/Documents/Github/RCFGL/Python_functions")
 import numpy as np
-import os
 from scipy.linalg import blas
+import prox_tv_Z_solver as ptv_z
 
-def FGL_ADMM(params,S,P,diff_tol):
+def CFGL_ADMM(params,S,P,Weight,which_K,which_not_K,diff_tol):
 
     lambda1 = params[0];
     lambda2 = params[1];
@@ -20,19 +20,21 @@ def FGL_ADMM(params,S,P,diff_tol):
     K = S.shape[2]
     U = np.zeros((p,p,K));
     Z = np.zeros((p,p,K));
-    fx = np.zeros((int(np.multiply((p+1),p)/2),1));
-    fy = np.zeros((int(np.multiply((p+1),p)/2),1));
-    iter = 0
-    for i in range(p):
-     for j in range(i,p):
-      fx[iter,:] = np.array([i]);
-      fy[iter,:] = np.array([j]);
-      iter = iter+1;
-         
+    fx = np.zeros(len(which_K[0]))
+    fy = np.zeros(len(which_K[0]))
+    for i in range(len(which_K[0])):
+        fx[i] = which_K[0][i]
+        fy[i] = which_K[1][i]
+
+    fx_not = which_not_K[0]
+    fy_not = which_not_K[1]
+
     iter = 0;      
     funVal = np.zeros([3, int(maxiter)])
+    
+    
     for iter in range(maxiter):
-     #print(iter);
+     print(iter);
      P_prev = np.copy(P);
      W = -S + np.multiply(rho,(Z - U));
      for k in range(K):
@@ -41,8 +43,15 @@ def FGL_ADMM(params,S,P,diff_tol):
       P[:,:,k] = blas.sgemm(1,blas.sgemm(1,V,D),V,trans_b = 1);
        
      W = P + U;    
-     fmgl_subfusedLasso_n(Z,W,fx,fy,lambda1/rho, lambda2/rho, p, K, int(np.dot((p+1),p/2)));   
-     print(W[6,106,:]);
+     fmgl_subfusedLasso_nc(Z,W,fx,fy,lambda1/rho, lambda2/rho, p, K, len(which_K[0]));    
+
+     
+     for i in fx_not:
+      for j in fy_not:
+       Z[i,j,:] = ptv_z.ptv_z(W[i,j,:],Weight[:,i,j],lambda1/rho, lambda2/rho, K)
+       Z[j,i,:] = Z[i,j,:] 
+
+
      U = U + (P - Z);
        
      funVal[0,iter] = computLogDet( P, S, K, lambda1, lambda2);
