@@ -57,3 +57,15 @@ Created on Sun Mar 14 20:39:38 2021
      
      funVal[1,iter] = diff_value
      funVal[2,iter] =  np.sum(abs(P-Z))
+     
+     
+     
+chk_w = pd.read_csv('/Users/seals/Desktop/CSPH/CFGL/MATLAB_data/chk_W.csv');
+chk_w = chk_w.iloc[:,1:chk_w.shape[1]]
+
+chk_z = pd.read_csv('/Users/seals/Desktop/CSPH/CFGL/MATLAB_data/chk_Z.csv');
+chk_z = chk_z.iloc[:,1:chk_z.shape[1]]
+     
+wd1, V1 = np.linalg.eig(W[:,:,k]);
+wd2, V2 = np.linalg.eig(chk_w);
+    
