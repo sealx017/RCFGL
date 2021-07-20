@@ -13,13 +13,17 @@ def CFGL_ADMM(params,S,P,Weight,which_K,which_not_K,diff_tol):
     lambda1 = params[0];
     lambda2 = params[1];
     rho = params[2];
-    p = int(params[3]);
-    maxiter = params[4]
+    p = S.shape[1];
+    maxiter = params[4];
     admmtol = params[5];
     difftol = params[6];
+    n = params[7];
+    n1 = params[7];
+    n = n/np.sum(n)
     K = S.shape[2]
     U = np.zeros((p,p,K));
     Z = np.zeros((p,p,K));
+    W = np.zeros((p,p,K));
     fx = np.zeros(len(which_K[0]))
     fy = np.zeros(len(which_K[0]))
     for i in range(len(which_K[0])):
@@ -36,25 +40,26 @@ def CFGL_ADMM(params,S,P,Weight,which_K,which_not_K,diff_tol):
     for iter in range(maxiter):
      print(iter);
      P_prev = np.copy(P);
-     W = -S + np.multiply(rho,(Z - U));
+     #W = -S + np.multiply(rho,(Z - U));
      for k in range(K):
+      W[:,:,k] = -S[:,:,k] + np.multiply(rho/n[k],(Z[:,:,k] - U[:,:,k]));
       wd, V = np.linalg.eigh(W[:,:,k]);
-      D = np.diag((wd + np.sqrt(wd**2 + np.dot(4,rho)))/np.dot(2,rho));
+      D = np.diag((wd + np.sqrt(wd**2 + np.dot(4,rho/n[k])))/np.dot(2,rho/n[k]));
       P[:,:,k] = blas.sgemm(1,blas.sgemm(1,V,D),V,trans_b = 1);
        
      W = P + U;    
      fmgl_subfusedLasso_nc(Z,W,fx,fy,lambda1/rho, lambda2/rho, p, K, len(which_K[0]));    
 
      
-     for i in fx_not:
-      for j in fy_not:
+     for m in range(len(fx_not)):
+       i = fx_not[m]; j = fy_not[m];  
        Z[i,j,:] = ptv_z.ptv_z(W[i,j,:],Weight[:,i,j],lambda1/rho, lambda2/rho, K)
        Z[j,i,:] = Z[i,j,:] 
 
 
      U = U + (P - Z);
        
-     funVal[0,iter] = computLogDet( P, S, K, lambda1, lambda2);
+     funVal[0,iter] = computLogDet( P, S, K, n1, lambda1, lambda2);
      diff_value = 0
      for k in range(K):
        diff_value += np.sum(abs(P[:,:,k] - P_prev[:,:,k]))/np.sum(abs(P_prev[:,:,k]))
@@ -75,14 +80,17 @@ def CFGL_ADMM(params,S,P,Weight,which_K,which_not_K,diff_tol):
     return(result)
     
 
-def computLogDet(P, S, K, lam1, lam2):
+
+def computLogDet(P, S, K, n, lam1, lam2):
 
     td = 0;
     for i in range(K):
-       td -= np.log(np.linalg.det(P[:,:,i])) + np.sum(np.multiply(S[:,:,i],P[:,:,i]));
+       td = td + n[i]*(np.log(np.linalg.det(P[:,:,i])) - np.sum(np.multiply(S[:,:,i],P[:,:,i])));
        
-    td = td + np.dot(lam1,np.sum(abs(P)));
+    td = td - np.dot(lam1,np.sum(abs(P)));
     P = P[:,:,range(K-2)] - P[:,:,range(1,K-1)];
-    td = td + np.dot(lam2,np.sum(abs(P)));
+    td = td - np.dot(lam2,np.sum(abs(P)));
+    td = -td
     return td;
+   
    
