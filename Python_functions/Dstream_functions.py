@@ -51,6 +51,7 @@ def MakeAdjMatrix_all(result, truncation_value = 0.05, top_N = 'all', names = 'd
 def NetworkPlotter(Adjacency_all, which = 1):
  A2 = Adjacency_all[which-1]
  G = nx.from_pandas_adjacency(A2)
+ plt.rcParams['figure.dpi'] = 500
  pos = nx.circular_layout(G)
  options = {
     "node_color": "#A0CBE2",
@@ -158,7 +159,7 @@ def AllNetworkPlotter(Adjacency_all):
                            index=int_id, columns=int_id)
     for k in range(len(Adjacency_all)):
      A2 = Adjacency_all[k]
-     A2_locs = [A2.columns.get_loc(col) for col in int_id]
+     A2_locs = np.where(np.isin(A2.columns, int_id))[0].tolist()
      Adj_all = Adj_all + A2.iloc[A2_locs, A2_locs]
     
     Adj_all = Adj_all.replace(num_condn-1, 0); Adj_all = Adj_all.replace(num_condn-2, 0)
