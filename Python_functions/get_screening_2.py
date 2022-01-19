@@ -1,10 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Fri May  7 16:22:09 2021
 
-@author: seals
-"""
 
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
