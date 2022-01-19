@@ -1,12 +1,12 @@
 import cppyy
 import os
-os.chdir("/Users/seals/Documents/Github/RCFGL/C_functions")
-cppyy.include('fmgl_final_c.h')
+#os.chdir("/Users/seals/Documents/Github/RCFGL/C_functions")
+cppyy.include('C_functions/fmgl_final_c.h')
 #from cppyy.gbl import fmgl_subfusedLasso_n
 #from cppyy.gbl import fmgl_subfusedLasso_diagonal
 from cppyy.gbl import fmgl_subfusedLasso_nc
 from cppyy.gbl import fmgl_subfusedLasso_diagonal_c
-os.chdir("/Users/seals/Documents/Github/RCFGL/Python_functions")
+#os.chdir("/Users/seals/Documents/Github/RCFGL/Python_functions")
 import numpy as np
 from scipy.linalg import blas
 import prox_tv_Z_solver as ptv_z
