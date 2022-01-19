@@ -1,9 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-#import matplotlib.cm as cm
 from matplotlib.lines import Line2D
-#from tabulate import tabulate
 import networkx as nx
 
 def CovtoCor(covariance):
