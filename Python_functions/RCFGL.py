@@ -2,15 +2,15 @@ import os
 import numpy as np
 import time
 import sys
-sys.path.insert(0, '')
+#sys.path.insert(0, '')
 
-os.chdir("/Users/seals/Documents/GitHub/RCFGL/Python_functions")
+#os.chdir("/Users/seals/Documents/GitHub/RCFGL/Python_functions")
 import screening_by_thm as scthm
 
-os.chdir("/Users/seals/Documents/GitHub/RCFGL/Python_functions")
+#os.chdir("/Users/seals/Documents/GitHub/RCFGL/Python_functions")
 from RCFGL_RFGL_base_functions import CFGL_ADMM, FGL_ADMM, FGL_ADMM_unconnected_n
 
-os.chdir("/Users/seals/Documents/GitHub/RCFGL/Python_functions")
+#os.chdir("/Users/seals/Documents/GitHub/RCFGL/Python_functions")
 import get_screening_2 as scr
 
 
