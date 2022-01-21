@@ -5,7 +5,14 @@
 
 - Both the models can jointly estimate networks of multiple conditions. RFGL is a non-condition adaptive method, whereas RCFGL is a condition adaptive method meaning the latter is better suited to capture condition-specific patterns in the networks across the conditions. 
 
-- Refer to the Jupyter notebook titled as "RCFGL_workflow_notebook.ipynb" to get a walk-through on how to use the package on an example dataset with three conditions. If you have problem viewing the notebook, please click on this link instead, https://rb.gy/3lgf88 .
+- Refer to the Jupyter notebook titled as "RCFGL_workflow_notebook.ipynb" to get a walk-through on how to use the package on an example dataset with three conditions. If you have problem viewing the notebook, please click on this link instead, https://rb.gy/3lgf88.
+
+- The package requires the following Python modules to be pre-installed,
+1. igl, install using: "conda install -c conda-forge igl"  (https://libigl.github.io/libigl-python-bindings/)
+2. cppyy, install using: "python -m pip install cppyy"  (https://cppyy.readthedocs.io/en/latest/)
+3. prox_tv, install using: "pip install prox_tv" (https://pypi.org/project/prox_tv/)
+
+* We recommend using Anaconda (https://www.anaconda.com/products/individual) and Python version > 3.9. The package can only be used on a Mac or Linux system not on Windows as the "prox_tv" module is not available for the latter.
 
 
 ## References
