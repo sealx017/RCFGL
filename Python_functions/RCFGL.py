@@ -137,9 +137,9 @@ def RCFGL(lambda1, lambda2, A, ADMMmaxiter = 100,trueSparsity  = 0, truncate=1e-
      blockP = np.zeros((len_block,len_block,K))
      blockWeight = np.zeros((K-1,len_block,len_block))
      blockA = []
-     blockA.append(A[0][:,newblocklist[i]]);
-     blockA.append(A[1][:,newblocklist[i]]);
-     blockA.append(A[2][:,newblocklist[i]]);
+     for k in np.array(range(K)):
+         blockA.append(A[k][:,newblocklist[i]]);
+         
      for k in range(K-1):
       blockWeight[k] = scr.get_scr_mat(np.array(blockA[k]),np.array(blockA[k+1]),alpha = 0.6)
 
