@@ -9,8 +9,11 @@
 
 - The package requires the following Python modules to be pre-installed,
   1. igl, install using: "conda install -c conda-forge igl"  (https://libigl.github.io/libigl-python-bindings/)
-  2. cppyy, install using: "python -m pip install cppyy"  (https://cppyy.readthedocs.io/en/latest/)
-  3. prox_tv, install using: "pip install prox_tv" (https://pypi.org/project/prox_tv/)
+  2. pywt, install using: "conda install pywavelets"  (https://pywavelets.readthedocs.io/en/latest/)
+  3. matplotlib, install using: "conda install -c conda-forge matplotlib"  (https://matplotlib.org/)
+  4. networkx, install using: "conda install -c conda-forge networkx"  (https://networkx.org/)
+  5. cppyy, install using: "python -m pip install cppyy"  (https://cppyy.readthedocs.io/en/latest/)
+  6. prox_tv, install using: "pip install prox_tv" (https://pypi.org/project/prox_tv/)
 
 * We recommend using Anaconda (https://www.anaconda.com/products/individual) and Python version > 3.9. The package can only be used on a Mac or Linux system not on Windows as the "prox_tv" module is not available for the latter.
 

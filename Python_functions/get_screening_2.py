@@ -12,8 +12,7 @@ import numpy as np
 import cppyy
 import os
 from scipy.stats import norm
-os.chdir("/Users/seals/Documents/Github/RCFGL/C_functions")
-cppyy.include('for_loop.h')
+cppyy.include('C_functions/for_loop.h')
 from cppyy.gbl import screening_loop
 from sklearn.linear_model import ElasticNet
  
