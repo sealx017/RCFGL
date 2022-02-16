@@ -10,10 +10,13 @@ def CovtoCor(covariance):
     correlation = covariance / outer_v
     return correlation
 
+
 def MakeAdjMatrix(theta, truncation_value, top_N, names):
     theta = abs(CovtoCor(theta)); theta[theta < truncation_value] = 0
-    if names == 'default':
+    if type(names) == str:
        names = np.array(range(0, theta.shape[0]))
+    else:
+        names = np.array(names)
     arr = np.triu(theta, 1)
     if top_N == 'all':
        top_N = len(np.where(arr != 0)[0])
@@ -31,6 +34,7 @@ def MakeAdjMatrix(theta, truncation_value, top_N, names):
     Adjacency.append(adj)
     Adjacency.append(nonz_names)
     return Adjacency
+
 
 def MakeAdjMatrix_all(result, truncation_value = 0.05, top_N = 'all', names = 'default'):
     Adjacency_all = []
