@@ -12,15 +12,18 @@ def CovtoCor(covariance):
 
 
 def MakeAdjMatrix(theta, truncation_value, top_N, names):
-    theta = abs(CovtoCor(theta)); theta[theta < truncation_value] = 0
+    theta = abs(CovtoCor(theta)); 
     if type(names) == str:
        names = np.array(range(0, theta.shape[0]))
     else:
         names = np.array(names)
     arr = np.triu(theta, 1)
+    theta[theta < truncation_value] = 0
     if top_N == 'all':
+       theta[theta < truncation_value] = 0 
+       arr = np.triu(theta, 1)
        top_N = len(np.where(arr != 0)[0])
-    
+       
     idx = np.argpartition(arr, arr.size - top_N, axis=None)[-top_N:]
     locations = np.column_stack(np.unravel_index(idx, arr.shape))
     adj = np.zeros(arr.shape)
