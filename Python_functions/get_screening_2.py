@@ -100,7 +100,7 @@ def get_W_theshold(W,alpha):
   t2 = np.sort(t1)[::-1]
   temp = (p**2-p)/2
   
-  thes = None
+  thes = t_upper
   use_t_upper = False
   x = np.zeros(t2.shape[0])
   for i in range(t2.shape[0]):

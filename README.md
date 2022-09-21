@@ -1,13 +1,16 @@
 # RCFGL
 ## C/Python implementation of Rapid Conditiona adaptive Fused Graphical Lasso (RCFGL)
 
+### Overview of the main functions
 - The package provides implementation of one existing joint network estimation model named Fused Multiple Graphical Lasso and one proposed method named Rapid Condition adaptive Fused Graphical Lasso. The former is implemented as a function named RFGL and the latter as a function named RCFGL. 
 
 - Both the models can jointly estimate networks of multiple conditions. RFGL is a non-condition adaptive method, whereas RCFGL is a condition adaptive method meaning that the latter is better suited to capture condition-specific patterns in the networks across the conditions. 
 
+### Jupyter notebook with walkthrough
 - Refer to the Jupyter notebook titled as "RCFGL_workflow_notebook.ipynb" to get a walk-through on how to use the package on an example dataset with three conditions. If you have problem viewing the notebook, please click on this link instead, https://bit.ly/3IFkdon.
 
-- The package requires the following Python modules to be pre-installed,
+### Python modules that need to be pre-installed
+- The notebook requires the following Python modules to be pre-installed,
   1. igl, install using: "conda install -c conda-forge igl"  (https://libigl.github.io/libigl-python-bindings/)
   2. pywt, install using: "conda install pywavelets"  (https://pywavelets.readthedocs.io/en/latest/)
   3. matplotlib, install using: "conda install -c conda-forge matplotlib"  (https://matplotlib.org/)
