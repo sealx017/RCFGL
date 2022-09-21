@@ -1,5 +1,5 @@
-# RCFGL
-## C/Python implementation of Rapid Condition adaptive Fused Graphical Lasso (RCFGL)
+# Rapid Condition adaptive Fused Graphical Lasso (RCFGL)
+## C/Python implementation of RCFGL
 
 ### Overview of the main functions
 - The package provides implementation of one existing joint network estimation model named Fused Multiple Graphical Lasso and one proposed method named Rapid Condition adaptive Fused Graphical Lasso. The former is implemented as a function named RFGL and the latter as a function named RCFGL. 
