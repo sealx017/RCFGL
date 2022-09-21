@@ -9,7 +9,7 @@
 ### Jupyter notebook with walkthrough
 - Refer to the Jupyter notebook titled as "RCFGL_workflow_notebook.ipynb" to get a walk-through on how to use the package on an example dataset with three conditions. If you have problem viewing the notebook, please click on this link instead, https://bit.ly/3IFkdon.
 
-### Python modules that need to be pre-installed
+### Python modules required to be installed
 - The notebook requires the following Python modules to be pre-installed,
   1. igl, install using: "conda install -c conda-forge igl"  (https://libigl.github.io/libigl-python-bindings/)
   2. pywt, install using: "conda install pywavelets"  (https://pywavelets.readthedocs.io/en/latest/)
