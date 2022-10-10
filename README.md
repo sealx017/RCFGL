@@ -7,7 +7,7 @@
 ### Overview of the main functions
 - The package provides implementation of one existing joint network estimation model entitled Fused Multiple Graphical Lasso (Yang et al. (2015)) and our proposed method named Rapid Condition adaptive Fused Graphical Lasso (RCFGL). The former is implemented as a function named RFGL and the latter as a function named RCFGL. 
 
-- Both the models can jointly estimate networks under multiple conditions. RFGL is a non-condition adaptive method, whereas RCFGL is a condition adaptive method meaning that the latter is better suited to capture condition-specific patterns in the networks across the conditions. 
+- Both the models can jointly estimate co-expression networks under multiple conditions. RFGL is a non-condition adaptive method, whereas RCFGL is a condition adaptive method meaning that the latter is better suited to capture condition-specific patterns in the networks across the conditions. 
 
 
 ### Python modules required to be installed
