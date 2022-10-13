@@ -3,7 +3,6 @@
 ### Jupyter notebook with walkthrough
 - The Jupyter notebook entitled "RCFGL_workflow_notebook.ipynb" provides a thorough guide on how to use the package on an example gene-expression dataset with three conditions. If you have problem viewing the notebook, please click on this link instead, https://bit.ly/3IFkdon.
 
-
 ### Overview of the main functions
 - The package provides implementation of one existing joint network estimation model entitled Fused Multiple Graphical Lasso (Yang et al. (2015)) and our proposed method named Rapid Condition adaptive Fused Graphical Lasso (RCFGL). The former is implemented as a function named RFGL and the latter as a function named RCFGL. 
 
@@ -20,6 +19,9 @@
   6. prox_tv, install using: "pip install prox_tv" (https://pypi.org/project/prox_tv/)
 
 * We recommend using Anaconda (https://www.anaconda.com/products/individual) and Python version > 3.9. The package can only be used on a Mac or Linux system not on Windows as the "prox_tv" module is not available for the latter.
+
+### Codes used in the paper
+- In the folder named "Codes_used_in_paper", we have provided all the codes used to simulate the datasets, run the methods and extract the results of the main paper. 
 
 
 ### References
