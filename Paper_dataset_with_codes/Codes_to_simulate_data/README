@@ -1,0 +1,5 @@
+#------------------------------------Folder description-----------------------------
+
+1. S1_S2_Simulation.R: This code generates the datasets for simulation scenarios S1 and S2 of the paper.
+
+2. S3_S4_Simulation.R: This code generates the datasets for simulation scenarios S3 and S4 of the paper.

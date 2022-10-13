@@ -1,0 +1,10 @@
+#------------------------------------Folder description-----------------------------
+
+1. 3condition and 4condition: These folders store the simulated datasets including the true precision matrices and the gene expression datasets.^^ 
+
+2. Results: This folder has two sub-folders named Py_res and R_res, respectively storing the output files of the Python-based methods (RGL and RCFGL) and R-based methods (FGL and CFGL). 
+
+3. Extracted_Results: This folder contains the extracted results in the forms of SSE and PPV as simple rdata files.
+
+
+^^: We are not providing the simulated datasets as they take up too much space. However, those files can be generated easily using the codes provided which has the same "seeds" that we used. We do provide the rdata files which are of much smaller size and can be used to generate the plots of the paper.

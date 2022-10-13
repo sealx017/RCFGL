@@ -1,0 +1,5 @@
+#------------------------------------Folder description-----------------------------
+
+1. S1_S2_SSE_p_500_n_100 and S1_S2_PPV_p_500_n_100: The files respectively show the plots of SSE and PPV under simulation scenarios S1 and S2.
+
+2. S3_S4_SSE_p_500_n_100 and S3_S4_PPV_p_500_n_100: The files respectively show the plots of SSE and PPV under simulation scenarios S3 and S4.

@@ -1,0 +1,11 @@
+#------------------------------------Folder description-----------------------------
+
+1. Codes_to_simulate_data: The folder has the codes for generating the simulated datasets used in the paper.
+
+2. Codes_to_run_the_methods: The folder has the codes for running the four methods on the simulated datasets.
+
+3. Codes_to_extract_results: The folder has the codes for extracting the results from the output files obtained upon running the methods.
+
+4. Simulated_datasets: The folder stores all the simulated datasets and also the output files.
+
+5. Plots: The folder stores the plots of the paper. 

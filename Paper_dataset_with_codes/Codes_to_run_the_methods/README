@@ -1,0 +1,7 @@
+#------------------------------------Folder description-----------------------------
+
+1. RFGL_RCFGL_S1.py, RFGL_RCFGL_S2.py, RFGL_RCFGL_S3.py and RFGL_RCFGL_S4.py: These python codes run the methods RFGL and RCFGL on the datasets respectively under scenario S1, S2, S3 and S4.
+
+2. FGL_CFGL_S1.R and FGL_CFGL_S2.R: These R codes run the methods FGL and CFGL on the datasets respectively under scenario S1 and S2.
+
+2. FGL_S3.R and FGL_S4.R: These R codes run the method FGL on the datasets respectively under scenario S3 and S4.
