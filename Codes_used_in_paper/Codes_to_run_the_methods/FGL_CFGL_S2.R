@@ -3,7 +3,7 @@
 require(JGL)
 require(CFGL)
 
-folder_path = "/Users/seals/Desktop/CSPH/CFGL/31Aug/Paper_dataset_with_codes/" #address of the paper data/codes folder
+folder_path = "/Users/seals/Desktop/CSPH/CFGL/31Aug/Codes_used_in_paper/" #address of the paper data/codes folder
 
 p = 500; n = 100; # number of genes and subjects
 lambdas = matrix(c(0.01,0.05,0.01,0.1,0.01,0.2,0.03,0.05,

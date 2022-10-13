@@ -19,7 +19,7 @@ scaler = function(x){
 #-----------------Generating five blocks of sub-networks for three conditions using Barabasi-Albert model------------
 library(igraph)
 library(raster)
-folder_path = "/Users/seals/Desktop/CSPH/CFGL/31Aug/Paper_dataset_with_codes/" #the location of the folder on the hard drive
+folder_path = "/Users/seals/Desktop/CSPH/CFGL/31Aug/Codes_used_in_paper/" #the location of the folder on the hard drive
 set.seed(1)
 size = 100 #size of every block
 class1 = class2 = class3 = NULL #three conditions/classes

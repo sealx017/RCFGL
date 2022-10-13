@@ -2,7 +2,7 @@
 #----------------------------------------------------------------------------------------------
 
 library(Matrix)
-folder_path = "/Users/seals/Desktop/CSPH/CFGL/31Aug/Paper_dataset_with_codes/" #the location of the folder on the hard drive
+folder_path = "/Users/seals/Desktop/CSPH/CFGL/31Aug/Codes_used_in_paper/" #the location of the folder on the hard drive
 
 #-------Loading the SSE and PPV files of scenario S3----------
 SSE = readRDS(paste0(folder_path,"Simulated_datasets/Extracted_Results/S3_SSE_results.rdata"))

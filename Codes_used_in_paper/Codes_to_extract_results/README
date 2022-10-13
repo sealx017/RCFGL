@@ -3,3 +3,5 @@
 1. S1_Result_Extract.R, S2_Result_Extract.R, S3_Result_Extract.R and S4_Result_Extract.R: These codes can respectively be used to extract the results under scenarios S1, S2, S3 and S4 from the output files, and store SSE and PPV of every method in simpler rdata format.
 
 2. S1_S2_plot_maker.R and S3_S4_plot_maker.R: These codes can respectively  be used to generate the plots shown in the paper under scenarios (S1 and S2) and (S3 and S4) from the rdata files generated using the codes described in (1).
+
+3. make_Adj_matrix.R: The file has a bunch of functions for downstream analysis.
