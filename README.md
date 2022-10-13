@@ -21,7 +21,7 @@
 * We recommend using Anaconda (https://www.anaconda.com/products/individual) and Python version > 3.9. The package can only be used on a Mac or Linux system not on Windows as the "prox_tv" module is not available for the latter.
 
 ### Codes used in the paper
-- In the folder named "Codes_used_in_paper", we have provided all the codes used to simulate the datasets, run the methods and extract the results of the main paper. 
+- In the folder named "Codes_used_in_paper", we have provided the fully commented codes used to simulate the datasets, to run the methods, and to extract the results of the main paper. 
 
 
 ### References
